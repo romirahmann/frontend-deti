@@ -1,0 +1,155 @@
+<div
+  class="container bg-auth-bg-primary bg-no-repeat bg-cover w-screen h-screen grid md:grid-cols-2"
+>
+  <div class="left py-20 pl-36">
+    <div
+      class="banner grid bg-auth-bg bg-no-repeat bg-cover rounded-2xl p-10 text-center justify-center content-center w-full h-full"
+    >
+      <img
+        src="./../../../assets/img/logo-THM-PNG.png"
+        class="w-20 md:mx-auto"
+        alt=""
+      />
+      <p class="text-3xl text-secondary font-bold">Welcome</p>
+      <p class="text-xl text-secondary">Register Your Account</p>
+    </div>
+  </div>
+  <div class="right">
+    <div class="card-login relative p-5">
+      <div
+        class="absolute top-32 right-20 left-auto z-50 justify-center items-center w-full"
+      >
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div
+            class="relative shadow-2xl shadow-secondary bg-white rounded-lg dark:bg-gray-700"
+          >
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Sign Up
+              </h3>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+              <form
+                class="space-y-4"
+                [formGroup]="formRegister"
+                (submit)="onSubmit()"
+              >
+                <div>
+                  <label
+                    for="username"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Your username</label
+                  >
+                  <input
+                    type="text"
+                    id="username"
+                    formControlName="username"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="enter your username ..."
+                    required
+                  />
+                </div>
+                <!-- Tambahkan pesan kesalahan untuk validasi -->
+                <div
+                  *ngIf="
+                    formRegister.get('username')?.invalid &&
+                    (formRegister.get('username')?.dirty ||
+                      formRegister.get('username')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="formRegister.get('username')?.errors?.['required']"
+                    class="text-red-500"
+                  >
+                    Username is required.
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Your password</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    formControlName="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    required
+                  />
+                </div>
+                <!-- Tambahkan pesan kesalahan untuk validasi -->
+                <div
+                  *ngIf="
+                    formRegister.get('password')?.invalid &&
+                    (formRegister.get('password')?.dirty ||
+                      formRegister.get('password')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="formRegister.get('password')?.errors?.['required']"
+                    class="text-red-500"
+                  >
+                    Password is required.
+                  </div>
+                  <div
+                    *ngIf="formRegister.get('password')?.errors?.['minlength']"
+                    class="text-red-600"
+                  >
+                    Password must be at least 8 characters long.
+                  </div>
+                </div>
+                <div>
+                  <label
+                    for="role"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Role</label
+                  >
+                  <select
+                    id="role"
+                    formControlName="role_id"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                  >
+                    <option value="null" disabled>Select Role</option>
+                    <ng-container *ngFor="let role of rolesData">
+                      <option value="{{ role.role_id }}">
+                        {{ role.role_name }}
+                      </option></ng-container
+                    >
+                  </select>
+                </div>
+                <br />
+                <button
+                  [disabled]="!formRegister.valid"
+                  type="submit"
+                  class="w-full text-white bg-secondary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Register Account
+                </button>
+                <div
+                  class="text-sm font-medium text-gray-500 dark:text-gray-300"
+                >
+                  have account?
+                  <a
+                    routerLink="/auth/login"
+                    class="text-blue-700 hover:underline dark:text-blue-500"
+                    >Sign In</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+<div
+  class="container bg-auth-bg-primary bg-no-repeat bg-cover w-screen h-screen grid md:grid-cols-2"
+>
+  <div class="left">
+    <div class="card-login relative p-5">
+      <div
+        class="absolute top-40 right-auto left-96 z-50 justify-center items-center w-full"
+      >
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div
+            class="relative shadow-2xl shadow-secondary bg-white rounded-lg dark:bg-gray-700"
+          >
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Sign in
+              </h3>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+              <form
+                class="space-y-4"
+                [formGroup]="formLogin"
+                (submit)="onSubmit()"
+              >
+                <div>
+                  <label
+                    for="username"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Your username</label
+                  >
+                  <input
+                    type="text"
+                    id="username"
+                    formControlName="username"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="enter your username ..."
+                    required
+                  />
+                  <!-- Tambahkan pesan kesalahan untuk validasi -->
+                  <div
+                    *ngIf="
+                      formLogin.get('username')?.invalid &&
+                      (formLogin.get('username')?.dirty ||
+                        formLogin.get('username')?.touched)
+                    "
+                    class="text-danger"
+                  >
+                    <div
+                      *ngIf="formLogin.get('username')?.errors?.['required']"
+                      class="text-red-500"
+                    >
+                      Username is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="relative">
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Your password</label
+                  >
+                  <input
+                    [type]="hideToglePassword ? 'password' : 'text'"
+                    formControlName="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    required
+                  />
+                  <div
+                    class="toggle-password absolute inset-y bottom-3 right-0 flex items-center pr-5 pointer-events-auto cursor-pointer"
+                    (click)="togglePasswordVisibility()"
+                  >
+                    <i
+                      class="fa-regular"
+                      [ngClass]="hideToglePassword ? 'fa-eye-slash' : 'fa-eye'"
+                    ></i>
+                  </div>
+                </div>
+                <!-- Tambahkan pesan kesalahan untuk validasi -->
+                <div
+                  *ngIf="
+                    formLogin.get('password')?.invalid &&
+                    (formLogin.get('password')?.dirty ||
+                      formLogin.get('password')?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="formLogin.get('password')?.errors?.['required']"
+                    class="text-red-500"
+                  >
+                    Password is required.
+                  </div>
+                  <div
+                    *ngIf="formLogin.get('password')?.errors?.['minlength']"
+                    class="text-red-600"
+                  >
+                    Password must be at least 8 characters long.
+                  </div>
+                </div>
+                <br />
+                <button
+                  [disabled]="!formLogin.valid"
+                  type="submit"
+                  class="w-full text-white bg-secondary hover:bg-primary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Login to your account
+                </button>
+                <div
+                  class="text-sm font-medium text-gray-500 dark:text-gray-300"
+                >
+                  Not registered?
+                  <a
+                    routerLink="/auth/register"
+                    class="text-blue-700 hover:underline dark:text-blue-500"
+                    >Create account</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right py-20 pr-36">
+    <div
+      class="banner grid bg-auth-bg bg-no-repeat bg-cover rounded-2xl p-10 text-center justify-center content-center w-full h-full"
+    >
+      <img
+        src="./../../../assets/img/logo-THM-PNG.png"
+        class="w-20 md:mx-auto"
+        alt=""
+      />
+      <p class="text-3xl text-secondary font-bold">Welcome Back</p>
+      <p class="text-xl text-secondary">Login Your Account</p>
+    </div>
+  </div>
+</div>

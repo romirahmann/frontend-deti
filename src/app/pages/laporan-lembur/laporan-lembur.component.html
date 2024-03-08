@@ -1,0 +1,100 @@
+<div class="container p-10">
+  <div class="header flex justify-between">
+    <span class="p-2 text-secondary font-bold uppercase text-2xl"
+      >Pelaporan Lembur</span
+    >
+    <div class="pb-4 bg-white dark:bg-gray-900">
+      <label for="table-search" class="sr-only">Search</label>
+      <div class="relative mt-1">
+        <div
+          class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="table-search"
+          class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search for report"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="relative mt-10 overflow-x-auto shadow-md shadow-secondary sm:rounded-lg"
+  >
+    <table
+      class="w-full border-2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th class="px-6 py-3 font-bold">No</th>
+          <th class="px-6 py-3 font-bold">Tanggal</th>
+          <th class="px-6 py-3 font-bold">Waktu (JAM)</th>
+          <th class="px-6 py-3 font-bold">Nama Klien</th>
+          <th class="px-6 py-3 font-bold">Bukti</th>
+          <th class="px-6 py-3 font-bold">
+            <span class="sr-only">Edit</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="bg-white border-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Apple MacBook Pro 17"
+          </th>
+          <td class="px-6 py-4">Silver</td>
+          <td class="px-6 py-4">Laptop</td>
+          <td class="px-6 py-4">$2999</td>
+          <td class="px-6 py-4">Bukti</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              href="#"
+              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              >Edit</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex justify-between mt-5 p-5">
+      <div class="info-pagination">Showing 0 entries 0</div>
+      <div class="btn-pagination flex">
+        <!-- Previous Button -->
+        <button
+          class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        >
+          Previous
+        </button>
+
+        <!-- Next Button -->
+        <button
+          class="flex items-center justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
