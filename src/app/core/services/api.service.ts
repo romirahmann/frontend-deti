@@ -12,9 +12,26 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   // USERS
-
+  updateUser(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.api}/master/user/${id}`, data);
+  }
   // ROLE
   getAllRole(): Observable<any> {
     return this.http.get(`${this.api}/master/user-role`);
+  }
+  // REPORTS
+  getAllReportByUserId(id: number): Observable<any> {
+    return this.http.get(`${this.api}/master/reportByUserId/${id}`);
+  }
+  addReport(data: any): Observable<any> {
+    return this.http.post(`${this.api}/master/report`, data);
+  }
+
+  // IMG
+  getFile(filename: string): Observable<any> {
+    return this.http.get(`${this.api}/file/${filename}`);
+  }
+  uploadFile(formData: any): Observable<any> {
+    return this.http.post(`${this.api}/upload`, formData);
   }
 }

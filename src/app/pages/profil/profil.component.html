@@ -1,0 +1,69 @@
+<div class="container p-10">
+  <h1 class="text-secondary text-4xl font-bold">Profile</h1>
+  <div class="profil grid grid-cols-1 md:grid-cols-2 shadow-xl">
+    <div class="left p-10">
+      <div
+        *ngIf="userLogin?.foto_profil === null"
+        class="notFoundImg relative text-center"
+      >
+        <img
+          src="./../../../assets/img/profil-kosong.png"
+          alt=""
+          class="rounded-3xl"
+        />
+
+        <button
+          (click)="toogleModal(1, userLogin)"
+          id="add-btn"
+          class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Add Picture
+        </button>
+      </div>
+      <div
+        *ngIf="userLogin?.foto_profil !== null"
+        class="foundImage text-center"
+      >
+        <img
+          src="./../../../assets/img/logo-THM-PNG.png"
+          alt=""
+          class="rounded-3xl"
+        />
+
+        <button
+          (click)="toogleModal(2, userLogin)"
+          id="remove-btn"
+          class="mt-5 text-white bg-red-500 hover:bg-red-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Remove Picture
+        </button>
+      </div>
+    </div>
+    <div class="right p-10">
+      <h1 class="text-secondary font-bold text-2xl">USERNAME</h1>
+      <p class="font-bold text-xl">{{ userLogin?.username }}</p>
+      <h1 class="text-secondary mt-5 font-bold text-2xl">ROLE</h1>
+      <p class="font-bold text-xl">{{ userLogin?.role_name }}</p>
+      <div class="dashboard flex mt-20">
+        <div
+          class="card-report bg-white shadow-md shadow-secondary p-10 rounded-xl flex flex-col text-center"
+        >
+          <span>0</span>
+          <span>Laporan Lembur</span>
+        </div>
+        <div
+          class="card-report bg-white shadow-md shadow-secondary p-10 rounded-xl ms-5 flex flex-col text-center"
+        >
+          <span>0</span>
+          <span>Laporan Absen</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-modal-picture
+  id="modal-picture"
+  class="absolute hidden overflow-y-auto overflow-x-hidden flex w-full h-full justify-center items-center top-0 left-0 backdrop-blur-sm backdrop-brightness-75 shadow-md"
+  [dataReceived]="dataReceived"
+  (closeModalEvent)="toogleModal(0, null)"
+></app-modal-picture>

@@ -41,6 +41,11 @@ export class AuthService {
     this.authUser.next(userLogin);
   }
 
+  updateUserLogin(userLogin: any) {
+    localStorage.setItem('user_login', JSON.stringify(userLogin));
+    this.authUser.next(userLogin);
+  }
+
   // FUNGSI GET
   getToken() {
     return localStorage.getItem('auth_token');
