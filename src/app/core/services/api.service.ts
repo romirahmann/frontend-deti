@@ -26,6 +26,20 @@ export class ApiService {
   addReport(data: any): Observable<any> {
     return this.http.post(`${this.api}/master/report`, data);
   }
+  updateReport(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.api}/master/report/${id}`, data);
+  }
+
+  // ABSENSI
+  getAllAbsensiByUserId(id: number): Observable<any> {
+    return this.http.get(`${this.api}/master/absensi-by-user/${id}`);
+  }
+  addAbsensi(data: any): Observable<any> {
+    return this.http.post(`${this.api}/master/absensi`, data);
+  }
+  updateAbsensi(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.api}/master/absensi/${id}`, data);
+  }
 
   // IMG
   getFile(filename: string): Observable<any> {
@@ -33,5 +47,8 @@ export class ApiService {
   }
   uploadFile(formData: any): Observable<any> {
     return this.http.post(`${this.api}/upload`, formData);
+  }
+  deleteFile(filename: string): Observable<any> {
+    return this.http.delete(`${this.api}/delete/${filename}`);
   }
 }

@@ -4,15 +4,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { environment } from 'src/environment/environment.prod';
 
 @Component({
-  selector: 'app-laporan-lembur',
-  templateUrl: './laporan-lembur.component.html',
-  styleUrls: ['./laporan-lembur.component.scss'],
+  selector: 'app-laporan-absensi',
+  templateUrl: './laporan-absensi.component.html',
+  styleUrls: ['./laporan-absensi.component.scss'],
 })
-export class LaporanLemburComponent {
+export class LaporanAbsensiComponent {
   userLogin!: any;
   dataReceived: any;
-  fileUrl!: string;
-
   reports!: any;
   displayReports!: any;
 
@@ -21,7 +19,6 @@ export class LaporanLemburComponent {
   currentPage: number = 1;
   totalPages: number = 0;
   entires: any;
-
   constructor(
     private authService: AuthService,
     private apiService: ApiService
@@ -31,14 +28,13 @@ export class LaporanLemburComponent {
   }
   getUserLogin() {
     this.userLogin = this.authService.getUserLogin();
-    this.getAllReportByUserId();
+    this.getReportsAbsensi();
   }
 
-  getAllReportByUserId() {
+  getReportsAbsensi() {
     const id = this.userLogin.user_id;
-    this.apiService.getAllReportByUserId(id).subscribe((res: any) => {
+    this.apiService.getAllAbsensiByUserId(id).subscribe((res: any) => {
       this.reports = res.data;
-      this.fileUrl = environment.apiUrl;
       this.entires = this.reports.length;
       this.calculateTotalPages();
       this.updateDisplayReports();
@@ -80,7 +76,7 @@ export class LaporanLemburComponent {
       modal?.classList.toggle('hidden');
     }
     if (category_toogle === 0) {
-      this.getAllReportByUserId();
+      this.getReportsAbsensi();
       const modal = document.querySelector('#modal-report');
       modal?.classList.toggle('hidden');
     }

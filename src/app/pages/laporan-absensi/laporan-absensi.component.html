@@ -1,7 +1,7 @@
 <div class="container p-10">
   <div class="header flex justify-between">
     <span class="p-2 text-secondary font-bold uppercase text-2xl"
-      >Pelaporan Lembur</span
+      >Pelaporan Absensi</span
     >
 
     <div class="pb-4 bg-white dark:bg-gray-900">
@@ -55,11 +55,10 @@
         <tr>
           <th class="px-6 py-3 font-bold">No</th>
           <th class="px-6 py-3 font-bold">Tanggal</th>
-          <th class="px-6 py-3 font-bold">Waktu (JAM)</th>
-          <th class="px-6 py-3 font-bold">Nama Klien</th>
-          <th class="px-6 py-3 font-bold">Bukti</th>
+          <th class="px-6 py-3 font-bold">Username</th>
+
           <th class="px-6 py-3 font-bold">
-            <span class="sr-only">Edit</span>
+            <span class="sr-only">Action</span>
           </th>
         </tr>
       </thead>
@@ -76,10 +75,6 @@
             </th>
             <td class="px-6 py-4">{{ report.date | date }}</td>
             <td class="px-6 py-4">{{ report.duration }}</td>
-            <td class="px-6 py-4">{{ report.client_name }}</td>
-            <td class="px-6 py-4">
-              <a href="{{ fileUrl }}/file/{{ report?.file_bukti }}">Bukti</a>
-            </td>
             <td class="px-6 py-4 text-right">
               <a
                 (click)="toogleModal(2, report)"
@@ -123,9 +118,9 @@
   </div>
 </div>
 
-<app-modal-lembur
+<app-modal-absensi
   id="modal-report"
   class="absolute hidden overflow-y-auto overflow-x-hidden flex w-full h-full justify-center items-center top-0 left-0 backdrop-blur-sm backdrop-brightness-75 shadow-md"
   [dataReceived]="dataReceived"
   (closeModalEvent)="toogleModal(0, null)"
-></app-modal-lembur>
+></app-modal-absensi>

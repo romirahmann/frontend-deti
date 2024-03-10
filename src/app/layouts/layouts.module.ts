@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ModalPictureComponent } from './modal/modal-picture/modal-picture.component';
 import { ModalLemburComponent } from './modal/modal-lembur/modal-lembur.component';
+import { ModalAbsensiComponent } from './modal/modal-absensi/modal-absensi.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,9 @@ import { ModalLemburComponent } from './modal/modal-lembur/modal-lembur.componen
     SidebarComponent,
     ModalPictureComponent,
     ModalLemburComponent,
+    ModalAbsensiComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
-  exports: [ModalPictureComponent, ModalLemburComponent],
+  exports: [ModalPictureComponent, ModalLemburComponent, ModalAbsensiComponent],
 })
 export class LayoutsModule {}
