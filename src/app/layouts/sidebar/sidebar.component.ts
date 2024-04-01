@@ -21,7 +21,7 @@ export class SidebarComponent {
 
   getUserLogin() {
     this.userLogin = this.authService.getUserLogin();
-    // console.log(this.userLogin);
+
     if (this.userLogin.filenmae) {
       this.getFile();
     }

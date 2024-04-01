@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/core/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -9,7 +10,12 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ProfilComponent {
   userLogin!: any;
   dataReceived: any;
-  constructor(private authService: AuthService) {}
+  totalLembur: number = 0;
+  totalAbsen: number = 0;
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService
+  ) {}
   ngOnInit() {
     this.getUserLogin();
   }
@@ -17,6 +23,8 @@ export class ProfilComponent {
   getUserLogin() {
     this.userLogin = this.authService.getUserLogin();
     console.log(this.userLogin);
+    this.getTotalLembur();
+    this.getTotalAbsensi();
   }
 
   toogleModal(category_toogle: number, foto: any) {
@@ -47,5 +55,20 @@ export class ProfilComponent {
       const modal = document.querySelector('#modal-picture');
       modal?.classList.toggle('hidden');
     }
+  }
+
+  getTotalLembur() {
+    this.apiService
+      .getTotalReportByUser(this.userLogin.user_id)
+      .subscribe((res: any) => {
+        this.totalLembur = res.data[0].total_laporan_lembur;
+      });
+  }
+  getTotalAbsensi() {
+    this.apiService
+      .getTotalAbsenByUser(this.userLogin.user_id)
+      .subscribe((res: any) => {
+        this.totalAbsen = res.data[0].total_absensi;
+      });
   }
 }

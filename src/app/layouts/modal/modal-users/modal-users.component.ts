@@ -12,13 +12,15 @@ import { ApiService } from 'src/app/core/services/api.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
-  selector: 'app-modal-absensi',
-  templateUrl: './modal-absensi.component.html',
-  styleUrls: ['./modal-absensi.component.scss'],
+  selector: 'app-modal-users',
+  templateUrl: './modal-users.component.html',
+  styleUrls: ['./modal-users.component.scss'],
 })
-export class ModalAbsensiComponent implements OnChanges {
-  formReport!: FormGroup;
-  formEditReport!: FormGroup;
+export class ModalUsersComponent implements OnChanges {
+  formAddUser!: FormGroup;
+  formEditUser!: FormGroup;
+  rolesData!: any;
+  hideToglePassword: boolean = true;
 
   selectedFile!: File;
   filename!: string;
@@ -33,17 +35,18 @@ export class ModalAbsensiComponent implements OnChanges {
     private route: Router
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
+    this.getAllRole();
     if ('dataReceived' in changes && this.dataReceived) {
-      if (this.dataReceived.category === 'ADD_REPORT') {
+      if (this.dataReceived.category === 'ADD_USER') {
         this.createFormAdd();
       }
-      if (this.dataReceived.category === 'EDIT_REPORT') {
+      if (this.dataReceived.category === 'EDIT_USER') {
         this.createFormEdit();
       }
     }
   }
   executeTestingFunction() {
-    const functionToExecute: keyof ModalAbsensiComponent | undefined =
+    const functionToExecute: keyof ModalUsersComponent | undefined =
       this.dataReceived?.funct;
     if (
       typeof functionToExecute === 'string' &&
@@ -59,37 +62,48 @@ export class ModalAbsensiComponent implements OnChanges {
   closeModal() {
     this.closeModalEvent.emit();
   }
+  getAllRole() {
+    this.apiService.getAllRole().subscribe((res: any) => {
+      this.rolesData = res.data;
+    });
+  }
+  togglePasswordVisibility() {
+    const inputanPassword = document.querySelector('#password');
+    this.hideToglePassword = !this.hideToglePassword;
+    inputanPassword?.setAttribute('type', 'text');
+  }
 
   // ADD ABSENSI
   createFormAdd() {
     const data = this.dataReceived;
-    this.formReport = this.fb.group({
-      user_id: [data.user_id],
-      date: ['', Validators.required],
-      kehadiran: ['', [Validators.required]],
+    this.formAddUser = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      role_id: ['', [Validators.required]],
     });
   }
   submitAdd() {
-    this.apiService.addAbsensi(this.formReport.value).subscribe((res: any) => {
-      console.log('Absensi Successfully');
-      this.closeModal();
-    });
+    // console.log(this.formAddUser.value);
+    this.authService
+      .registrasi(this.formAddUser.value)
+      .subscribe((res: any) => {
+        console.log('Add Successfully');
+        this.closeModal();
+      });
   }
   // EDIT ABSENSI
   createFormEdit() {
-    const data = this.dataReceived.reports;
-    console.log(data);
-    this.formEditReport = this.fb.group({
-      user_id: [data.user_id],
-      date: [data.date],
-      kehadiran: [data.kehadiran],
+    const data = this.dataReceived.users;
+    this.formEditUser = this.fb.group({
+      username: [data.username],
+      role_id: [data.role_id],
     });
   }
   submitEdit() {
-    const data = this.dataReceived.reports;
-    const newData = this.formEditReport.value;
+    const data = this.dataReceived.users;
+    const id = data.user_id;
     this.apiService
-      .updateAbsensi(data.absensi_id, newData)
+      .updateUser(id, this.formEditUser.value)
       .subscribe((res: any) => {
         console.log('Update Successfully');
         this.closeModal();
@@ -97,15 +111,13 @@ export class ModalAbsensiComponent implements OnChanges {
   }
   // REMOVE
   removeReport() {
-    const data = this.dataReceived.reports;
+    const data = this.dataReceived.users;
     const newData = {
       is_deleted: 1,
     };
-    this.apiService
-      .updateAbsensi(data.absensi_id, newData)
-      .subscribe((res: any) => {
-        console.log('Delete Successfully');
-        this.closeModal();
-      });
+    this.apiService.updateUser(data.user_id, newData).subscribe((res: any) => {
+      console.log('Delete Successfully');
+      this.closeModal();
+    });
   }
 }

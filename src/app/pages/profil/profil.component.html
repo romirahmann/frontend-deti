@@ -25,7 +25,7 @@
         class="foundImage text-center"
       >
         <img
-          src="./../../../assets/img/logo-THM-PNG.png"
+          src="http://localhost:3000/api/file/{{ userLogin?.foto_profil }}"
           alt=""
           class="rounded-3xl"
         />
@@ -48,13 +48,13 @@
         <div
           class="card-report bg-white shadow-md shadow-secondary p-10 rounded-xl flex flex-col text-center"
         >
-          <span>0</span>
+          <span>{{ totalLembur }}</span>
           <span>Laporan Lembur</span>
         </div>
         <div
           class="card-report bg-white shadow-md shadow-secondary p-10 rounded-xl ms-5 flex flex-col text-center"
         >
-          <span>0</span>
+          <span>{{ totalAbsen }}</span>
           <span>Laporan Absen</span>
         </div>
       </div>

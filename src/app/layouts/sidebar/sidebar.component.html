@@ -20,7 +20,7 @@
         </a>
       </li>
       <li></li>
-      <li>
+      <li *ngIf="userLogin?.role_id !== 2">
         <a
           routerLink=""
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -29,13 +29,31 @@
           <span class="ms-3">Laporan Lembur</span>
         </a>
       </li>
-      <li>
+      <li *ngIf="userLogin?.role_id === 3">
         <a
           routerLink="/absensi"
           class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
         >
           <i class="fa-solid fa-clipboard-list"></i>
           <span class="ms-3">Laporan Absensi</span>
+        </a>
+      </li>
+      <li *ngIf="userLogin?.role_id === 2">
+        <a
+          routerLink="/data-master"
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        >
+          <i class="fa-solid fa-users"></i>
+          <span class="ms-3">Data Master</span>
+        </a>
+      </li>
+      <li *ngIf="userLogin?.role_id === 2">
+        <a
+          routerLink="/export-pdf-page"
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        >
+          <i class="fa-solid fa-file-export"></i>
+          <span class="ms-3">Export Report Lembur</span>
         </a>
       </li>
       <li>

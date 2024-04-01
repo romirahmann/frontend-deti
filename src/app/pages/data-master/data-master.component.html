@@ -1,7 +1,7 @@
 <div class="container p-10">
   <div class="header flex justify-between">
     <span class="p-2 text-secondary font-bold uppercase text-2xl"
-      >Pelaporan Absensi</span
+      >DATA MASTER USERS</span
     >
 
     <div class="pb-4 bg-white dark:bg-gray-900">
@@ -40,7 +40,7 @@
     (click)="toogleModal(1, null)"
     class="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
   >
-    Add Pelaporan
+    Add User
   </button>
 
   <div
@@ -54,16 +54,16 @@
       >
         <tr>
           <th class="px-6 py-3 font-bold">No</th>
-          <th class="px-6 py-3 font-bold">Tanggal</th>
+          <th class="px-6 py-3 font-bold">Foto Profil</th>
           <th class="px-6 py-3 font-bold">Username</th>
-          <th class="px-6 py-3 font-bold">Kehadiran</th>
+          <th class="px-6 py-3 font-bold">Role</th>
           <th class="px-6 py-3 font-bold">
             <span class="sr-only">Action</span>
           </th>
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngFor="let report of displayReports; let i = index">
+        <ng-container *ngFor="let user of displayUsers; let i = index">
           <tr
             class="bg-white border-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
@@ -73,28 +73,25 @@
             >
               {{ (currentPage - 1) * pageSize + i + 1 }}
             </th>
-            <td class="px-6 py-4">{{ report.date | date }}</td>
-            <td class="px-6 py-4">{{ report.username }}</td>
             <td class="px-6 py-4">
-              <span
-                *ngIf="report.kehadiran === 1"
-                class="text-primary font-bold"
-                >Hadir</span
-              >
-              <span
-                *ngIf="report.kehadiran === 0"
-                class="text-red-500 font-bold"
-                >Tidak Hadir</span
-              >
+              <img
+                src="{{ urlFoto }}/file/{{ user?.foto_profil }}"
+                class="w-10"
+                alt=""
+              />
+            </td>
+            <td class="px-6 py-4">{{ user.username }}</td>
+            <td class="px-6 py-4">
+              {{ user.role_name }}
             </td>
             <td class="px-6 py-4 text-right">
               <a
-                (click)="toogleModal(2, report)"
+                (click)="toogleModal(2, user)"
                 class="font-medium text-green-500 dark:text-green-500 hover:underline"
                 ><i class="fa-solid fa-pen-to-square"></i
               ></a>
               <a
-                (click)="toogleModal(3, report)"
+                (click)="toogleModal(3, user)"
                 class="ms-5 font-medium text-red-500 dark:text-red-500 hover:underline"
                 ><i class="fa-solid fa-trash"></i
               ></a>
@@ -130,9 +127,9 @@
   </div>
 </div>
 
-<app-modal-absensi
-  id="modal-report"
+<app-modal-users
+  id="modal-users"
   class="absolute hidden overflow-y-auto overflow-x-hidden flex w-full h-full justify-center items-center top-0 left-0 backdrop-blur-sm backdrop-brightness-75 shadow-md"
   [dataReceived]="dataReceived"
   (closeModalEvent)="toogleModal(0, null)"
-></app-modal-absensi>
+></app-modal-users>

@@ -7,6 +7,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ModalPictureComponent } from './modal/modal-picture/modal-picture.component';
 import { ModalLemburComponent } from './modal/modal-lembur/modal-lembur.component';
 import { ModalAbsensiComponent } from './modal/modal-absensi/modal-absensi.component';
+import { ModalApprovalComponent } from './modal/modal-approval/modal-approval.component';
+import { ModalUsersComponent } from './modal/modal-users/modal-users.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +17,16 @@ import { ModalAbsensiComponent } from './modal/modal-absensi/modal-absensi.compo
     ModalPictureComponent,
     ModalLemburComponent,
     ModalAbsensiComponent,
+    ModalApprovalComponent,
+    ModalUsersComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
-  exports: [ModalPictureComponent, ModalLemburComponent, ModalAbsensiComponent],
+  exports: [
+    ModalPictureComponent,
+    ModalLemburComponent,
+    ModalAbsensiComponent,
+    ModalApprovalComponent,
+    ModalUsersComponent,
+  ],
 })
 export class LayoutsModule {}

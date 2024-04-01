@@ -1,0 +1,53 @@
+<div class="container p-10">
+  <div class="header flex justify-between">
+    <span class="p-2 text-secondary font-bold uppercase text-2xl"
+      >Filter Export</span
+    >
+  </div>
+  <div
+    class="relative mt-5 p-10 overflow-x-auto shadow-md shadow-secondary sm:rounded-lg"
+  >
+    <form [formGroup]="formFilter" (submit)="onSubmit()" class="space-y-4">
+      <div>
+        <label
+          for="users"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Users</label
+        >
+        <select
+          id="users"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          formControlName="user_id"
+        >
+          <option disabled selected>Select User</option>
+          <ng-container *ngFor="let user of dataUsers">
+            <option value="{{ user.user_id }}">
+              {{ user.username }}
+            </option></ng-container
+          >
+        </select>
+      </div>
+      <div>
+        <label
+          for="date"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Date</label
+        >
+        <input
+          type="month"
+          id="month"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          formControlName="date"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Detail Export
+      </button>
+    </form>
+  </div>
+</div>
