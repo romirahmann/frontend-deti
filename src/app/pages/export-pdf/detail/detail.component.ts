@@ -23,6 +23,7 @@ export class DetailComponent {
   getdataParams() {
     this.activeRoute.queryParams.subscribe((params) => {
       this.dataFilterDate = params;
+      // console.log(this.dataFilterDate);
       const month = parseInt(this.dataFilterDate?.month);
       const year = parseInt(this.dataFilterDate?.year);
       const id = parseInt(this.dataFilterDate.user_id);
@@ -30,11 +31,13 @@ export class DetailComponent {
     });
   }
   getDataReportAkumulasi(id: number, month: number, year: number) {
-    this.apiService.getAllAkumulasiReport(3, 3, 2024).subscribe((res: any) => {
-      console.log(res.data);
-      this.dataReports = res.data.daftarReport;
-      this.totalJamAkumulasi = res.data.totalDuration;
-    });
+    this.apiService
+      .getAllAkumulasiReport(id, month, year)
+      .subscribe((res: any) => {
+        console.log(res.data);
+        this.dataReports = res.data.daftarReport;
+        this.totalJamAkumulasi = res.data.totalDuration;
+      });
   }
   generatePDF() {
     const options = {

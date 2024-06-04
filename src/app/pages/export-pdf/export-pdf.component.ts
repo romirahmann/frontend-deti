@@ -42,6 +42,7 @@ export class ExportPdfComponent {
       year: parseInt(year),
       month: parseInt(month),
     };
+    console.log(data);
     this.route.navigate(['/export-pdf-detail'], { queryParams: data });
   }
 }
